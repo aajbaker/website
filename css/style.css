@@ -37,6 +37,7 @@ p.contact {
 }
 a:link {
     color: #8AA8A1;
+    text-decoration: none;
 }
 
 /* FADE IN */
