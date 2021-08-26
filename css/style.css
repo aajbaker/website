@@ -30,8 +30,8 @@ p.contact {
     line-height: 1.3;
     margin: 0;
 }
-a:link {
-    color: #B9D8C2;
+a {
+    color:mediumvioletred;
     text-decoration: none;
 }
 .header {
@@ -61,7 +61,7 @@ div > img {
     height: auto;
 }
 
-/* BODY LAYOUT ––  PHOTO RIGHT */
+/* BODY LAYOUT ––  GENERIC */
 
 .body-wrapper {
     display: grid;
@@ -79,7 +79,7 @@ div > img {
     grid-row: 2 / 5;
 }
 
-/* BODY LAYOUT ––  GENERIC */
+/* BODY LAYOUT ––  PHOTO RIGHT */
 
 .photo-right{
     display: grid;
@@ -104,7 +104,7 @@ div > img {
 .photo-right > div:nth-child(4) {
     z-index: 1;
     grid-column: 2;
-    grid-row: 3 / 6;
+    grid-row: 2 / 6;
     text-align: center;
     align-self: end;
     margin: 15px;
@@ -135,12 +135,17 @@ div > img {
 .photo-left > div:nth-child(4) {
     z-index: 1;
     grid-column: 1;
-    grid-row: 3 / 6;
+    grid-row: 2 / 6;
     text-align: center;
     align-self: end;
     margin: 15px;
 }
 
+/* MISC */
+.flex{
+    display: flex;
+    padding: 20px;
+}
 
 /* FADE IN */
 
