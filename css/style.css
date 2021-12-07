@@ -35,23 +35,24 @@ a {
     text-decoration: none;
 }
 .header {
-    background-color: #8AA1B1;
+    background-color: #7094b6;
     padding: 20pt;
-    margin: 10px;
+    margin: 20px;
 }
 .text-box {
     z-index: 0;
     padding: 20px;
-    background-color: #C2CED6;
+    background-color: #98b9ca69;
     padding-top: 40px;
     padding-bottom: 40px;
 }
 .title {
+    font-family: 'Josefin Sans', sans-serif;
     padding: 15px 20px 15px;
     margin-left: 20px;
     margin-right: 20px;
     color: white;
-    background-color: #FFD15C;
+    background-color: #ffcf31;
     text-transform: uppercase;
     font-style: italic;
     font-weight: bold;
@@ -61,7 +62,7 @@ div > img {
     height: auto;
 }
 .solo-img {
-    background-color: #FFD15C;
+    background-color: #ffcf31;
     width: 80%;
     margin: auto;
     padding: 15px;
@@ -238,7 +239,7 @@ div > img {
     display: block;
     width: 1em;
     height: 1em;
-    background: #FFD15C;
+    background: #ffcf31;
     margin: 0 auto .5em auto;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -270,7 +271,7 @@ div > img {
     max-width: 100%;
     padding: 5px;
     background-color: white;
-    border: 5px solid #FFD15C;
+    border: 5px solid #ffcf31;
 }
 .timeline-wrapper .timeline-content-item .timeline-content-item-reveal a span {
     position: absolute;
