@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Other · Aaron Baker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-name">Aaron Baker</a>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="other.html" class="active">Other</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== MAIN ===================== -->
+  <main>
+
+    <div class="page-header">
+      <h1>Other</h1>
+    </div>
+
+    <!-- TEACHING MATERIALS -->
+    <!-- RESOURCES: Update hrefs to point to your actual PDF / Notion links -->
+    <section class="other-section">
+      <h2>Resources</h2>
+      <p>Some materials I've developed for my students:</p>
+      <ul class="resource-list">
+        <li>
+          <a href="https://docs.google.com/document/d/19dvHUw5zOyRInW7ACsxpC0SH8-hyXxBswkwWlWhG_k0/export?format=pdf&attachment=false&ouid=110931800712811555262&rtpof=true&sd=true" target="_blank">
+            <!-- PDF icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+            </svg>
+            Computational Models of Social Cognition – an Introduction
+          </a>
+        </li>
+        <li>
+          <a href="https://foregoing-surfboard-ae6.notion.site/Intro-to-R-programming-e32d3cb749de410f8240fa3ac4a60f8a" target="_blank">
+            <!-- External link icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            Intro to R Programming
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- INTERESTS / NOTES -->
+    <!-- DIAGRAM: Replace src with the actual image path if you have it, e.g. assets/camera-eye.jpg -->
+    <section class="other-section">
+      <h2>Camera &amp; Eye</h2>
+      <p>
+        Enjoy this diagram I made comparing a camera to an eye! I got into film
+        cameras during covid and think this nicely captures how mechanical models
+        help us understand human systems. In a similar way, computers can help us
+        understand the mind.
+      </p>
+      <div class="diagram-wrap">
+        <img src="assets/camera-eye-diagram.png" alt="Diagram comparing camera mechanics to the human eye" />
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Aaron Baker · <a href="mailto:aaron.baker@yale.edu">aaron.baker@yale.edu</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
