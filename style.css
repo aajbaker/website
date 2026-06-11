@@ -419,6 +419,77 @@ main {
   margin-top: 0.2rem;
 }
 
+/* apps grid */
+.apps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.app-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.app-card:hover {
+  border-color: var(--accent-mid);
+  box-shadow: 0 2px 12px rgba(124, 77, 255, 0.08);
+}
+
+.app-card-emoji {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.app-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  margin: 0;
+}
+
+.app-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  flex: 1;
+  margin: 0;
+}
+
+.app-card a.app-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-top: 0.25rem;
+}
+
+.app-card a.app-link:hover {
+  color: var(--accent-dark);
+  text-decoration: none;
+}
+
+.app-card a.app-link svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .apps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* diagram image */
 .diagram-wrap {
   margin-top: 1rem;
