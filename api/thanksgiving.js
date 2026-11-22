@@ -5,8 +5,16 @@
    Storage is Upstash Redis, connected through the Vercel Marketplace, which
    sets KV_REST_API_URL / KV_REST_API_TOKEN on the project. */
 
-const REDIS_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const REDIS_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+function findRedisEnv(env) {
+  if (env.KV_REST_API_URL && env.KV_REST_API_TOKEN) return [env.KV_REST_API_URL, env.KV_REST_API_TOKEN];
+  if (env.UPSTASH_REDIS_REST_URL && env.UPSTASH_REDIS_REST_TOKEN) return [env.UPSTASH_REDIS_REST_URL, env.UPSTASH_REDIS_REST_TOKEN];
+  // A store connected with a custom prefix, e.g. STORAGE_REST_API_URL.
+  for (const k of Object.keys(env)) {
+    if (k.endsWith('_REST_API_URL') && env[k.slice(0, -4) + '_TOKEN']) return [env[k], env[k.slice(0, -4) + '_TOKEN']];
+  }
+  return [null, null];
+}
+const [REDIS_URL, REDIS_TOKEN] = findRedisEnv(process.env);
 
 const ROOM_RE = /^[a-z0-9]{12,32}$/;
 // g = guests, d = dinner time, k:<id> = checkmark, x:<id> = extra shopping item
