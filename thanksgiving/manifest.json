@@ -1,0 +1,15 @@
+{
+  "name": "Thanksgiving 2026",
+  "short_name": "Thanksgiving",
+  "description": "Shopping, prep and cooking plan for Thanksgiving dinner.",
+  "start_url": "/thanksgiving/",
+  "scope": "/thanksgiving/",
+  "display": "standalone",
+  "background_color": "#FBF6EF",
+  "theme_color": "#FBF6EF",
+  "icons": [
+    { "src": "/thanksgiving/icon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/thanksgiving/icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/thanksgiving/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
