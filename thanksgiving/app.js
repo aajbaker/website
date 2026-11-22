@@ -9,14 +9,14 @@
 
   /* ---------- state ---------- */
 
-  const DEFAULTS = { v: 1, checked: {}, guests: 8, dinner: 960, custom: [], hideDone: false, timers: [], lg: false, awake: false };
+  const DEFAULTS = { v: 1, checked: {}, guests: 8, dinner: 960, custom: [], hideDone: false, timers: [], lg: false, awake: false, room: null, pending: {}, ver: -1 };
 
   function load() {
     try {
       const raw = localStorage.getItem(KEY);
       if (raw) {
         const s = JSON.parse(raw);
-        if (s && s.v === 1) return Object.assign({}, DEFAULTS, s, { checked: s.checked || {}, custom: s.custom || [], timers: s.timers || [] });
+        if (s && s.v === 1) return Object.assign({}, DEFAULTS, s, { checked: s.checked || {}, custom: s.custom || [], timers: s.timers || [], pending: s.pending || {} });
       }
     } catch (e) { /* storage unavailable */ }
     return JSON.parse(JSON.stringify(DEFAULTS));
@@ -52,6 +52,7 @@
     clock: svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
     cal: svg('<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>'),
     share: svg('<path d="M12 15V3M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/>'),
+    sync: svg('<path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 3v5h5"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 21v-5h-5"/>'),
     bell: svg('<path d="M6 9a6 6 0 1 1 12 0c0 6 2.5 8 2.5 8h-17S6 15 6 9Z"/><path d="M10 21h4"/>'),
   };
 
@@ -172,7 +173,12 @@
 
   function setupChips() {
     return '<div class="chips"><button class="chip" data-act="settings">' + I.people + S.guests + ' guests</button>' +
-      '<button class="chip" data-act="settings">' + I.clock + 'Dinner ' + fmtTime(S.dinner) + '</button></div>';
+      '<button class="chip" data-act="settings">' + I.clock + 'Dinner ' + fmtTime(S.dinner) + '</button>' +
+      (S.room ? syncBadge('chip') : '') + '</div>';
+  }
+
+  function syncBadge(cls) {
+    return '<a class="' + cls + ' sync-' + syncStatus + '" data-sync href="#/guide/sync"><i class="sdot"></i><span class="sync-t">' + esc(syncLabel()) + '</span></a>';
   }
 
   function guestNotesFor(dish) {
@@ -291,7 +297,7 @@
     h += '<h2 class="h2">Progress</h2><div class="card stats">' + stat('shop', 'Groceries', '#/shop') + stat('prep', 'Prep steps', '#/plan') + stat('gear', 'Gear', '#/shop/gear') + '</div>';
 
     h += '<h2 class="h2">The menu</h2><div class="card board" id="board">' + boardHTML() + '</div>';
-    h += '<p class="foot">Checkmarks are saved on this phone. Use Guide → Share progress to send them to someone else.</p>';
+    h += '<p class="foot">' + (S.room ? 'Live sync is on. Changes from other phones show up within a few seconds.' : 'Checkmarks are saved on this phone. Turn on live sync in Guide to share them.') + '</p>';
     return h;
   }
 
@@ -459,8 +465,16 @@
       '<a class="btn btn-primary btn-block" href="' + calHref() + '">' + I.bell + 'Add alerts to Calendar</a>' +
       '<p class="tiny muted" style="margin:10px 0 0">If you change the dinner time later, delete the old events and add them again.</p></div>';
 
-    h += '<h2 class="h2">Share progress</h2><div class="card card-pad"><p class="small" style="margin:0 0 12px">Checkmarks are saved on this phone only. Send a link and when someone opens it, your checkmarks and setup merge into theirs. Nothing gets unchecked.</p>' +
-      '<button class="btn btn-block" data-act="share">' + I.share + 'Send my progress</button></div>';
+    h += '<h2 class="h2" id="g-sync">Live sync</h2><div class="card card-pad">';
+    if (!S.room) {
+      h += '<p class="small" style="margin:0 0 12px">Keep checkmarks, extra items, the guest count and the dinner time in sync across phones. Start it here, then send the invite link to whoever is cooking with you.</p>' +
+        '<button class="btn btn-primary btn-block" data-act="sync-start">' + I.sync + 'Start live sync</button>';
+    } else {
+      h += syncBadge('syncline') + '<p class="small muted sync-msg" style="margin:6px 0 14px">' + esc(syncMsg()) + '</p>' +
+        '<div class="btn-row"><button class="btn btn-primary" style="flex:1" data-act="invite">' + I.share + 'Invite</button>' +
+        '<button class="btn" style="flex:1" data-act="sync-stop">Stop syncing</button></div>';
+    }
+    h += '</div>';
 
     h += '<h2 class="h2">Keeping it vegetarian</h2><div class="card"><ul class="bul" style="padding-top:12px">' + TG.vegRules.map(v => '<li>' + esc(v) + '</li>').join('') + '</ul></div>';
     h += '<h2 class="h2">Target temperatures</h2><div class="card">' + tempsTable(TG.temps) + '</div>';
@@ -480,7 +494,7 @@
 
   function parseHash() {
     const h = location.hash;
-    if (h.startsWith('#sync=')) return { sync: h.slice(6) };
+    if (h.startsWith('#join=')) return { join: h.slice(6) };
     const p = h.replace(/^#\/?/, '').split('/');
     const tab = ['today', 'shop', 'plan', 'cook', 'guide'].includes(p[0]) ? p[0] : 'today';
     return { tab, sub: p[1] || null };
@@ -497,12 +511,12 @@
 
   function onRoute() {
     const r = parseHash();
-    if (r.sync) {
+    if (r.join) {
       history.replaceState(null, '', '#/today');
       route = { tab: 'today', sub: null };
       render();
       window.scrollTo(0, 0);
-      offerMerge(r.sync);
+      offerJoin(r.join);
       return;
     }
     const changed = r.tab !== route.tab || r.sub !== route.sub;
@@ -532,12 +546,16 @@
   function toggle(id, el) {
     if (S.checked[id]) delete S.checked[id];
     else S.checked[id] = 1;
+    record('k:' + id, S.checked[id] ? '1' : '0');
     // Finishing every step of a recipe task checks the task off too.
     if (id.startsWith('st:') && S.checked[id]) {
       const [, rid, day] = id.split(':');
       const task = ALL_TASKS.find(t => t.recipe === rid && t.phase === day);
       const ph = TG.dishes[rid].phases.find(p => p.day === day);
-      if (task && ph.steps.every((_, i) => S.checked['st:' + rid + ':' + day + ':' + i])) S.checked[task.id] = 1;
+      if (task && !S.checked[task.id] && ph.steps.every((_, i) => S.checked['st:' + rid + ':' + day + ':' + i])) {
+        S.checked[task.id] = 1;
+        record('k:' + task.id, '1');
+      }
     }
     save();
     sync();
@@ -584,51 +602,217 @@
     toastT = setTimeout(() => t.classList.remove('show'), 2400);
   }
 
-  /* ---------- share / merge ---------- */
+  /* ---------- live sync ---------- */
+  // Each shared plan is a "room" on /api/thanksgiving. Local changes queue in
+  // S.pending (kept across reloads, so nothing is lost offline) and are sent
+  // right away; other phones' changes are pulled every few seconds.
 
-  const b64url = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-  const unb64url = s => { s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; return decodeURIComponent(escape(atob(s))); };
+  const API = '/api/thanksgiving';
+  const ROOM_RE = /^[a-z0-9]{12,32}$/;
+  let syncStatus = S.room ? 'connecting' : 'off';
+  let flushing = false;
+  let epoch = 0;
+  let pollT = null;
+  let flushT = null;
 
-  function shareProgress() {
-    const payload = { c: Object.keys(S.checked), g: S.guests, d: S.dinner, x: S.custom };
-    const url = location.origin + '/thanksgiving/#sync=' + b64url(JSON.stringify(payload));
-    if (navigator.share) {
-      navigator.share({ title: 'Thanksgiving progress', text: 'My Thanksgiving checklist progress', url }).catch(() => {});
-    } else if (navigator.clipboard) {
-      navigator.clipboard.writeText(url).then(() => toast('Link copied'), () => prompt('Copy this link', url));
-    } else {
-      prompt('Copy this link', url);
-    }
+  function syncLabel() {
+    if (!S.room) return 'Not syncing';
+    if (syncStatus === 'ok') return 'Synced';
+    if (syncStatus === 'offline') return Object.keys(S.pending).length ? 'Offline · will sync' : 'Offline';
+    if (syncStatus === 'nostore') return 'Sync not set up yet';
+    return 'Connecting…';
+  }
+  function syncMsg() {
+    if (syncStatus === 'nostore') return 'The sync database isn’t connected yet. Your changes are saved and will sync as soon as it is.';
+    if (syncStatus === 'offline') return 'Can’t reach the sync server. Your changes are saved and will sync when you’re back online.';
+    return 'Changes from other phones show up within a few seconds while the app is open.';
+  }
+  function setSyncStatus(st) {
+    syncStatus = st;
+    $$('[data-sync]').forEach(el => {
+      el.classList.remove('sync-ok', 'sync-offline', 'sync-nostore', 'sync-connecting', 'sync-off');
+      el.classList.add('sync-' + st);
+      const t = el.querySelector('.sync-t'); if (t) t.textContent = syncLabel();
+    });
+    $$('.sync-msg').forEach(el => { el.textContent = syncMsg(); });
   }
 
-  let pendingMerge = null;
-  function offerMerge(enc) {
-    try {
-      const p = JSON.parse(unb64url(enc));
-      if (!p || !Array.isArray(p.c)) throw new Error('bad');
-      pendingMerge = p;
-      const newOnes = p.c.filter(id => !S.checked[id]).length;
-      const extras = (p.x || []).filter(x => !S.custom.some(c => c.id === x.id)).length;
-      openSheet('merge', '<h3>Merge progress?</h3><p class="muted">This link adds <b>' + newOnes + '</b> checkmark' + (newOnes === 1 ? '' : 's') +
-        (extras ? ' and <b>' + extras + '</b> extra shopping item' + (extras === 1 ? '' : 's') : '') +
-        ' to yours. It also sets the plan to <b>' + Number(p.g) + ' guests</b> with dinner at <b>' + fmtTime(Number(p.d)) + '</b>. Nothing gets unchecked.</p>' +
-        '<div class="btn-row" style="margin-top:16px"><button class="btn" style="flex:1" data-act="close">Cancel</button><button class="btn btn-primary" style="flex:1" data-act="merge">Merge</button></div>');
-    } catch (e) {
-      toast('That progress link didn’t work');
-    }
-  }
-  function doMerge() {
-    const p = pendingMerge;
-    if (!p) return;
-    p.c.forEach(id => { if (typeof id === 'string' && id.length < 80) S.checked[id] = 1; });
-    const g = Number(p.g); if (g >= 2 && g <= 24) S.guests = g;
-    const d = Number(p.d); if (d >= 720 && d <= 1140 && d % 30 === 0) S.dinner = d;
-    (p.x || []).forEach(x => { if (x && typeof x.id === 'string' && typeof x.n === 'string' && !S.custom.some(c => c.id === x.id)) S.custom.push({ id: x.id.slice(0, 40), n: x.n.slice(0, 80) }); });
-    pendingMerge = null;
+  function record(k, v) {
+    if (!S.room) return;
+    S.pending[k] = String(v);
     save();
+    clearTimeout(flushT);
+    flushT = setTimeout(flush, 200);
+  }
+
+  async function post(room, ops) {
+    const r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ room, ops }) });
+    if (r.status === 503) { const e = new Error('nostore'); e.nostore = true; throw e; }
+    if (!r.ok) throw new Error('http ' + r.status);
+    return r.json();
+  }
+
+  async function flush() {
+    if (!S.room || flushing) return;
+    const keys = Object.keys(S.pending);
+    if (!keys.length) return;
+    const ops = {};
+    keys.slice(0, 400).forEach(k => { ops[k] = S.pending[k]; });
+    const room = S.room;
+    flushing = true;
+    let ok = false;
+    try {
+      const j = await post(room, ops);
+      if (S.room === room) {
+        Object.keys(ops).forEach(k => { if (S.pending[k] === ops[k]) delete S.pending[k]; });
+        epoch++;
+        // If nobody else wrote in between, we're already up to date.
+        if (j.v === S.ver + 1) S.ver = j.v; else schedulePoll(0);
+        save();
+        setSyncStatus('ok');
+        ok = true;
+      }
+    } catch (e) {
+      setSyncStatus(e.nostore ? 'nostore' : 'offline');
+    } finally {
+      flushing = false;
+    }
+    if (ok && Object.keys(S.pending).length) flush();
+  }
+
+  function schedulePoll(ms) {
+    clearTimeout(pollT);
+    if (S.room) pollT = setTimeout(poll, ms);
+  }
+
+  async function poll() {
+    if (!S.room || document.visibilityState !== 'visible') return; // resumes on visibilitychange
+    if (flushing) { schedulePoll(800); return; }
+    const ep = epoch;
+    const room = S.room;
+    let next = 5000;
+    try {
+      const r = await fetch(API + '?room=' + room + '&v=' + S.ver, { cache: 'no-store' });
+      if (r.status === 503) { setSyncStatus('nostore'); next = 30000; }
+      else if (!r.ok) throw new Error('http ' + r.status);
+      else {
+        const j = await r.json();
+        if (S.room !== room) return;
+        if (ep !== epoch || flushing) next = 0; // a write landed mid-request; ask again
+        else {
+          if (j.data) applyServer(j.data);
+          S.ver = j.v;
+          save();
+          setSyncStatus('ok');
+          if (Object.keys(S.pending).length) flush();
+        }
+      }
+    } catch (e) {
+      setSyncStatus('offline');
+      next = 10000;
+    }
+    schedulePoll(next);
+  }
+
+  function applyServer(data) {
+    const before = JSON.stringify([S.guests, S.dinner, S.custom]);
+    const checked = {};
+    const custom = [];
+    let g = S.guests;
+    let d = S.dinner;
+    const put = (k, v) => {
+      if (k === 'g') { const n = Number(v); if (n >= 2 && n <= 24) g = n; }
+      else if (k === 'd') { const n = Number(v); if (n >= 720 && n <= 1140) d = n; }
+      else if (k.startsWith('k:')) { if (v === '1') checked[k.slice(2)] = 1; else delete checked[k.slice(2)]; }
+      else if (k.startsWith('x:')) {
+        const id = k.slice(2);
+        const i = custom.findIndex(c => c.id === id);
+        if (v) { if (i < 0) custom.push({ id, n: v }); else custom[i].n = v; }
+        else if (i >= 0) custom.splice(i, 1);
+      }
+    };
+    Object.keys(data).forEach(k => put(k, data[k]));
+    // Local changes that haven't reached the server yet win.
+    Object.keys(S.pending).forEach(k => put(k, S.pending[k]));
+    custom.sort((a, b) => (a.id < b.id ? -1 : 1));
+    S.checked = checked;
+    S.guests = g;
+    S.dinner = d;
+    S.custom = custom;
+    save();
+    if (JSON.stringify([S.guests, S.dinner, S.custom]) !== before) rerender();
+    else sync();
+  }
+
+  /** Re-render without losing a half-typed extra item. */
+  function rerender() {
+    const a = document.activeElement;
+    const typing = a && a.closest && a.closest('#addform') ? a.value : null;
+    render();
+    refreshSettings();
+    if (typing !== null) { const n = $('#addform input'); if (n) { n.value = typing; n.focus(); } }
+  }
+
+  function allOps(withSetup) {
+    const ops = {};
+    if (withSetup) { ops.g = String(S.guests); ops.d = String(S.dinner); }
+    Object.keys(S.checked).forEach(id => { ops['k:' + id] = '1'; });
+    S.custom.forEach(c => { ops['x:' + c.id] = c.n; });
+    return ops;
+  }
+
+  function makeCode() {
+    const abc = 'abcdefghjkmnpqrstuvwxyz23456789';
+    const a = new Uint8Array(14);
+    crypto.getRandomValues(a);
+    return Array.from(a, b => abc[b % abc.length]).join('');
+  }
+
+  function joinRoom(room, ops) {
+    S.room = room;
+    S.pending = ops;
+    S.ver = -1;
+    save();
+    setSyncStatus('connecting');
+    render();
+    flush().then(() => schedulePoll(0));
+  }
+
+  function startSync() {
+    joinRoom(makeCode(), allOps(true));
+    openInvite(true);
+  }
+
+  function stopSync() {
+    clearTimeout(pollT);
+    clearTimeout(flushT);
+    S.room = null;
+    S.pending = {};
+    S.ver = -1;
+    save();
+    setSyncStatus('off');
     closeSheet();
     render();
-    toast('Progress merged');
+    toast('Stopped syncing on this phone');
+  }
+
+  const inviteUrl = () => location.origin + '/thanksgiving/#join=' + S.room;
+
+  function openInvite(fresh) {
+    openSheet('invite', '<h3>' + (fresh ? 'Live sync is on' : 'Invite someone') + '</h3>' +
+      '<p class="muted">Anyone who opens this link joins this plan, so send it only to the people cooking with you. Checkmarks, extra items, the guest count and the dinner time all stay in sync.</p>' +
+      '<div class="codebox">' + esc(inviteUrl().replace(/^https?:\/\//, '')) + '</div>' +
+      (navigator.share ? '<button class="btn btn-primary btn-block" data-act="invite-send">' + I.share + 'Send invite link</button>' : '') +
+      '<button class="btn btn-block" style="margin-top:8px" data-act="invite-copy">Copy link</button>' +
+      '<button class="btn btn-block" style="margin-top:8px;border:0" data-act="close">Done</button>');
+  }
+
+  function offerJoin(room) {
+    if (!ROOM_RE.test(room)) { toast('That invite link didn’t work'); return; }
+    if (S.room === room) { toast('This phone is already synced to that plan'); return; }
+    openSheet('join', '<h3>Join the shared plan?</h3><p class="muted">Checkmarks, extra shopping items, the guest count and the dinner time will stay in sync with everyone using this link. Anything already checked on this phone gets added' +
+      (S.room ? ', and this replaces the plan you’re syncing with now' : '') + '.</p>' +
+      '<div class="btn-row" style="margin-top:16px"><button class="btn" style="flex:1" data-act="close">Cancel</button><button class="btn btn-primary" style="flex:1" data-act="join" data-room="' + esc(room) + '">Join</button></div>');
   }
 
   /* ---------- timers ---------- */
@@ -734,18 +918,36 @@
     else if (act === 'close') closeSheet();
     else if (act === 'g-' || act === 'g+') {
       S.guests = Math.min(24, Math.max(2, S.guests + (act === 'g+' ? 1 : -1)));
+      record('g', S.guests);
       save(); refreshSettings(); render();
     } else if (act === 'del') {
       const id = el.dataset.id;
       S.custom = S.custom.filter(c => c.id !== id);
+      if (S.checked[id]) record('k:' + id, '0');
       delete S.checked[id];
+      record('x:' + id, '');
       save(); render();
-    } else if (act === 'share') shareProgress();
-    else if (act === 'merge') doMerge();
+    } else if (act === 'sync-start') startSync();
+    else if (act === 'sync-stop') {
+      openSheet('stop', '<h3>Stop syncing?</h3><p class="muted">This phone keeps its checkmarks but stops sending and receiving changes. You can rejoin later from the invite link.</p>' +
+        '<div class="btn-row" style="margin-top:16px"><button class="btn" style="flex:1" data-act="close">Cancel</button><button class="btn btn-primary" style="flex:1" data-act="sync-stop-yes">Stop</button></div>');
+    } else if (act === 'sync-stop-yes') stopSync();
+    else if (act === 'invite') openInvite(false);
+    else if (act === 'invite-send') navigator.share({ title: 'Thanksgiving plan', text: 'Join our Thanksgiving plan', url: inviteUrl() }).catch(() => {});
+    else if (act === 'invite-copy') {
+      const url = inviteUrl();
+      if (navigator.clipboard) navigator.clipboard.writeText(url).then(() => toast('Invite link copied'), () => prompt('Copy this link', url));
+      else prompt('Copy this link', url);
+    } else if (act === 'join') {
+      closeSheet();
+      joinRoom(el.dataset.room, allOps(false));
+      toast('Joined the shared plan');
+    }
     else if (act === 'reset') {
-      openSheet('reset', '<h3>Clear all checkmarks?</h3><p class="muted">This unchecks everything on this phone: shopping, gear, prep and recipe steps. Your guest count, dinner time and extra items stay.</p>' +
+      openSheet('reset', '<h3>Clear all checkmarks?</h3><p class="muted">This unchecks everything' + (S.room ? ' for everyone on the shared plan' : ' on this phone') + ': shopping, gear, prep and recipe steps. The guest count, dinner time and extra items stay.</p>' +
         '<div class="btn-row" style="margin-top:16px"><button class="btn" style="flex:1" data-act="close">Cancel</button><button class="btn btn-primary" style="flex:1" data-act="reset-yes">Clear</button></div>');
     } else if (act === 'reset-yes') {
+      Object.keys(S.checked).forEach(id => record('k:' + id, '0'));
       S.checked = {};
       save(); closeSheet(); render(); toast('All checkmarks cleared');
     } else if (act === 'custom-timer') {
@@ -787,7 +989,7 @@
 
   document.addEventListener('change', e => {
     const a = e.target.dataset && e.target.dataset.act;
-    if (a === 'dinner') { S.dinner = Number(e.target.value); save(); refreshSettings(); render(); }
+    if (a === 'dinner') { S.dinner = Number(e.target.value); record('d', S.dinner); save(); refreshSettings(); render(); }
     else if (a === 'lg') { S.lg = e.target.checked; save(); document.documentElement.classList.toggle('lg', S.lg); $$('input[data-act="lg"]').forEach(i => { i.checked = S.lg; }); }
     else if (a === 'awake') { S.awake = e.target.checked; save(); updateWake(); $$('input[data-act="awake"]').forEach(i => { i.checked = S.awake; }); }
     else if (a === 'hide') { S.hideDone = e.target.checked; save(); const l = $('#shoplist'); if (l) l.classList.toggle('hide-done', S.hideDone); }
@@ -798,7 +1000,9 @@
       e.preventDefault();
       const v = e.target.item.value.trim();
       if (!v) return;
-      S.custom.push({ id: 'c:' + Date.now().toString(36), n: v.slice(0, 80) });
+      const item = { id: 'c:' + Date.now().toString(36), n: v.slice(0, 80) };
+      S.custom.push(item);
+      record('x:' + item.id, item.n);
       save(); render();
       const inp = $('#addform input'); if (inp) inp.focus();
     } else if (e.target.id === 'tform') {
@@ -812,8 +1016,13 @@
   });
 
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') { updateWake(); tick(); if (route.tab === 'today' || route.tab === 'plan') render(); }
+    if (document.visibilityState === 'visible') {
+      updateWake(); tick();
+      if (route.tab === 'today' || route.tab === 'plan') render();
+      if (S.room) { flush(); schedulePoll(0); }
+    }
   });
+  window.addEventListener('online', () => { if (S.room) { flush(); schedulePoll(0); } });
 
   /* ---------- boot ---------- */
 
@@ -822,6 +1031,7 @@
   onRoute();
   tick();
   updateWake();
+  if (S.room) { flush(); schedulePoll(0); }
   setInterval(() => { if (S.timers.length) tick(); }, 1000);
   setInterval(() => {
     if (sheetKind) return;

@@ -500,3 +500,16 @@ body.has-dock .toast { bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom
 @media (min-width: 700px) {
   .title { font-size: 2.3rem; }
 }
+
+/* ---------- live sync ---------- */
+.sdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); flex: none; }
+.sync-ok .sdot { background: var(--veg); }
+.sync-offline .sdot, .sync-nostore .sdot { background: var(--warn); }
+.sync-connecting .sdot { animation: blink 1s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .3; } }
+.chip.sync-ok, .chip.sync-offline, .chip.sync-nostore, .chip.sync-connecting { color: var(--ink); }
+.syncline { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--ink); }
+.codebox {
+  margin: 14px 0; padding: 10px 12px; border-radius: 10px; background: var(--surface-2);
+  font: 600 .85rem ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; color: var(--ink-2);
+}
