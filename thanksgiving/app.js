@@ -254,7 +254,7 @@
 
     if (!S.checked['t:sun-order'] && ti <= 2) {
       h += '<div class="alert" style="margin-top:12px"><div class="ico">🦃</div><div><b>Order the fresh turkey' + (ti <= 1 ? ' by Sunday' : ' now') + '</b>' +
-        '<p>12–14 lb, for pickup Tuesday. Fresh birds sell out Thanksgiving week.</p>' +
+        '<p>12–14 lb, for pickup Monday. Fresh birds sell out Thanksgiving week.</p>' +
         '<button class="btn btn-sm btn-primary" data-toggle="t:sun-order">Mark it ordered</button></div></div>';
     }
 
@@ -318,7 +318,7 @@
     let h = '<header class="head"><div class="eyebrow">' + (gear ? 'Check by Saturday' : 'Monday evening') + '</div><h1 class="title">' + (gear ? 'Gear' : 'Shopping') + '</h1>' +
       '<p class="lede" style="margin:0">' + (gear
         ? 'The two you can’t skip are poultry shears for the backbone and an instant-read thermometer.'
-        : 'One shop on Monday evening for everything but the turkey, and all of it keeps until Thursday. Quantities are for ' + S.guests + ' guests.') + '</p></header>';
+        : 'One shop on Monday evening, and all of it keeps until Thursday. Quantities are for ' + S.guests + ' guests.') + '</p></header>';
     h += '<nav class="seg"><a href="#/shop" class="' + (gear ? '' : 'on') + '">Groceries</a><a href="#/shop/gear" class="' + (gear ? 'on' : '') + '">Gear</a></nav>';
 
     if (gear) {
@@ -335,7 +335,7 @@
     const turkeyNotes = guestNotesFor('turkey');
     h += '<div class="card list" style="margin-bottom:6px">' +
       row('t:sun-order', '<div class="row-line"><span class="row-title">Turkey ordered</span><span class="row-qty">12–14 lb fresh</span></div><div class="row-note">Do it this weekend. Fresh birds sell out Thanksgiving week.</div>', { cls: 'crit' }) +
-      row('s:turkey', '<div class="row-line"><span class="row-title">Turkey picked up</span><span class="row-qty">Tuesday</span></div><div class="row-note">Check that the use-by date is after Thursday. If pickup falls through, a fresh bird bought Wednesday still works.</div>') +
+      row('s:turkey', '<div class="row-line"><span class="row-title">Turkey picked up</span><span class="row-qty">Monday</span></div><div class="row-note">Check that the use-by date is after Thursday. If pickup falls through, a fresh bird bought Tuesday still works.</div>') +
       (turkeyNotes.length ? '<div class="sec-note">' + turkeyNotes.map(n => esc(n.t)).join(' ') + '</div>' : '') + '</div>';
 
     h += '<div id="shoplist" class="' + (S.hideDone ? 'hide-done' : '') + '">';

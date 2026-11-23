@@ -60,7 +60,7 @@ function build(dinner) {
 
   const sun = TG.days.find(d => d.id === 'sun');
   lines.push(...event('tg26-sun-order', sun.date, 10 * 60, 15, '🦃 Order the fresh turkey',
-    '12–14 lb, for pickup Tuesday. Fresh birds sell out Thanksgiving week.'));
+    '12–14 lb, for pickup Monday. Fresh birds sell out Thanksgiving week.'));
 
   for (const id of ['mon', 'tue', 'wed']) {
     const d = TG.days.find(x => x.id === id);

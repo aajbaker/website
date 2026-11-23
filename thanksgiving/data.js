@@ -194,7 +194,7 @@
     mushroomGravy: {
       name: 'Mushroom gravy', short: 'Mushroom gravy', veg: true, color: 'mgravy',
       approach: 'Browned cremini mushrooms, vegetable stock, soy sauce and thyme',
-      makeAhead: 'Tue (keeps 4 days)',
+      makeAhead: 'Wed (keeps 4 days)',
       scales: true,
       ingredients: [
         '{{1 lb}} cremini mushrooms, chopped',
@@ -209,7 +209,7 @@
       ],
       phases: [
         {
-          day: 'tue', title: 'Make it',
+          day: 'wed', title: 'Make it',
           steps: [
             { t: 'Melt {{4 tbsp}} butter in the large skillet over medium-high. Add {{1 lb}} chopped cremini and {{1 onion}}, diced. Stir only now and then. The mushrooms release a lot of water first, so keep going until it has cooked off and they’re deep brown, about 15 min. If the pan is crowded, brown them in two batches.', timers: [{ m: 15, l: 'Brown mushrooms' }] },
             { t: 'Add {{2 cloves}} minced garlic and {{1 tsp}} chopped thyme. Stir in {{1/3 cup}} flour and cook 2 min.', timers: [{ m: 2, l: 'Cook flour' }] },
@@ -255,7 +255,7 @@
     stuffing: {
       name: 'Stuffing', short: 'Stuffing', veg: true, color: 'stuffing',
       approach: 'Bread, butter, sage, thyme, celery and vegetable stock, baked in a dish',
-      makeAhead: 'Dry bread Mon, make Thu',
+      makeAhead: 'Dry bread Tue, make Thu',
       scales: true,
       ingredients: [
         'About {{1 1/2 lb}} crusty country or sourdough bread ({{2 loaves}})',
@@ -270,11 +270,11 @@
       ],
       phases: [
         {
-          day: 'mon', title: 'Dry the bread',
+          day: 'tue', title: 'Dry the bread',
           steps: [
-            { t: 'Heat the oven to 250°F. Cut the bread into ¾-inch cubes and spread them over both sheet pans.' },
+            { t: 'Do this first tonight. Heat the oven to 250°F. Cut the bread into ¾-inch cubes and spread them over both sheet pans.' },
             { t: 'Bake, stirring once, until dry and crisp, about 40 min. Work in batches if they don’t fit in one layer.', timers: [{ m: 40, l: 'Dry bread' }] },
-            { t: 'Let them cool, then keep them in a paper bag or large bowl on the counter until Thursday. That frees both pans, and the turkey needs one from Tuesday.' },
+            { t: 'Let them cool, then keep them in a paper bag or large bowl on the counter until Thursday. That frees a pan for the turkey. If the turkey is salted before the bread is done, it can wait in the fridge on a platter.' },
           ],
         },
       ],
@@ -326,33 +326,33 @@
       id: 'sun', date: '2026-11-22', name: 'Sunday', short: 'Sun', sub: 'Order the turkey',
       blurb: 'The one thing you can’t let slip is ordering the fresh turkey.',
       tasks: [
-        { id: 't:sun-order', critical: true, title: 'Order a fresh 12–14 lb turkey', detail: 'For pickup Tuesday. Fresh birds sell out Thanksgiving week. A frozen one won’t thaw in time, and a bigger bird won’t lie flat on a standard sheet pan.' },
-        { id: 't:sun-fridge', title: 'Clear a full fridge shelf', detail: 'The turkey sits uncovered on a sheet pan there from Tuesday to Thursday.' },
+        { id: 't:sun-order', critical: true, title: 'Order a fresh 12–14 lb turkey', detail: 'For pickup Monday. Fresh birds sell out Thanksgiving week. A frozen one won’t thaw in time, and a bigger bird won’t lie flat on a standard sheet pan.' },
+        { id: 't:sun-fridge', title: 'Clear a full fridge shelf', detail: 'The turkey lives there from Monday to Thursday, uncovered on a sheet pan once it’s brined.' },
       ],
     },
     {
-      id: 'mon', date: '2026-11-23', name: 'Monday', short: 'Mon', sub: 'The big shop', est: 'Evening · 1–2 hrs',
-      blurb: 'One grocery run covers everything except the turkey, and all of it keeps until Thursday.',
+      id: 'mon', date: '2026-11-23', name: 'Monday', short: 'Mon', sub: 'Shop and pick up the turkey', est: 'Evening · 1–2 hrs',
+      blurb: 'One grocery run plus the turkey pickup. All of it keeps until Thursday.',
       tasks: [
-        { id: 't:mon-shop', title: 'Do the full grocery shop', detail: 'Everything except the turkey comes from one shop, and all of it keeps until Thursday.', link: '#/shop', linkLabel: 'Open the shopping list' },
-        { id: 't:mon-bread', title: 'Cube and oven-dry the bread for stuffing', recipe: 'stuffing', phase: 'mon' },
+        { id: 't:mon-shop', title: 'Do the full grocery shop', detail: 'Everything on the list comes from one shop, and all of it keeps until Thursday.', link: '#/shop', linkLabel: 'Open the shopping list' },
+        { id: 's:turkey', title: 'Pick up the turkey', detail: 'Check that the use-by date is after Thursday. Keep it in its wrapper in the fridge until tomorrow.' },
       ],
     },
     {
-      id: 'tue', date: '2026-11-24', name: 'Tuesday', short: 'Tue', sub: 'Turkey, stock, mushroom gravy', est: 'Evening · 2–3 hrs',
-      blurb: 'Spatchcock the turkey first so the backbone can go straight into the stockpot. The stock simmers 2–3 hours while you brine the bird and make the mushroom gravy.',
+      id: 'tue', date: '2026-11-24', name: 'Tuesday', short: 'Tue', sub: 'Turkey, stock, bread', est: 'Evening · 2–3 hrs',
+      blurb: 'Get the bread drying on both sheet pans first. Then spatchcock the turkey so the backbone can go straight into the stockpot. By the time the bird is salted, the bread is out and a pan is free for it. The stock simmers 2–3 hours.',
       tasks: [
-        { id: 's:turkey', title: 'Pick up the turkey' },
+        { id: 't:tue-bread', title: 'Cube and oven-dry the bread for stuffing', recipe: 'stuffing', phase: 'tue' },
         { id: 't:tue-turkey', title: 'Spatchcock and dry-brine the turkey', recipe: 'turkey', phase: 'tue', link: '#/guide/spatchcock', linkLabel: 'How to spatchcock' },
         { id: 't:tue-stock', title: 'Turkey stock', recipe: 'turkeyGravy', phase: 'tue' },
-        { id: 't:tue-mgravy', title: 'Mushroom gravy', recipe: 'mushroomGravy', phase: 'tue' },
       ],
     },
     {
-      id: 'wed', date: '2026-11-25', name: 'Wednesday', short: 'Wed', sub: 'Gravy base, cranberry, table', est: 'Evening · 1–2 hrs',
+      id: 'wed', date: '2026-11-25', name: 'Wednesday', short: 'Wed', sub: 'Both gravies, cranberry, table', est: 'Evening · about 2 hrs',
       blurb: 'Tonight sets up Thursday so it’s mostly oven time.',
       tasks: [
         { id: 't:wed-tgravy', title: 'Turkey gravy base', recipe: 'turkeyGravy', phase: 'wed' },
+        { id: 't:wed-mgravy', title: 'Mushroom gravy', recipe: 'mushroomGravy', phase: 'wed' },
         { id: 't:wed-cran', title: 'Cranberry sauce', recipe: 'cranberry', phase: 'wed' },
         { id: 't:wed-herb', title: 'Make the herb butter', recipe: 'turkey', phase: 'wed' },
         { id: 't:wed-pot', title: 'Wash the stockpot', detail: 'It does double duty as the potato pot tomorrow.' },
@@ -427,7 +427,7 @@
   ];
 
   const shop = [
-    { id: 's:turkey', sec: 'meat', n: 'Fresh turkey', q: () => '12–14 lb', note: 'Ordered ahead, picked up Tuesday', for: ['turkey'] },
+    { id: 's:turkey', sec: 'meat', n: 'Fresh turkey', q: () => '12–14 lb', note: 'Ordered ahead, picked up Monday', for: ['turkey'] },
 
     { id: 's:potatoes', sec: 'produce', n: 'Yukon Gold potatoes', q: f => pk(Math.max(2, Math.round(5 * f)), 'lb'), for: ['potatoes'] },
     { id: 's:sprouts', sec: 'produce', n: 'Brussels sprouts', q: f => pk(Math.max(1, roundTo(2 * f, 0.5)), 'lb'), for: ['sprouts'] },
@@ -483,7 +483,7 @@
       name: 'Turkey', items: [
         { id: 'e:shears', n: 'Poultry shears or heavy-duty kitchen shears', must: true, note: 'For cutting out the backbone' },
         { id: 'e:thermo', n: 'Instant-read thermometer', must: true, note: 'Spatchcocked birds cook fast, so go by temperature, not time. A leave-in probe is a bonus.' },
-        { id: 'e:sheetpan', n: 'Rimmed half-sheet pan (18 × 13 in) with a wire rack that fits inside', note: 'Dries bread Monday, then holds the turkey from Tuesday on' },
+        { id: 'e:sheetpan', n: 'Rimmed half-sheet pan (18 × 13 in) with a wire rack that fits inside', note: 'Dries bread Tuesday, then holds the turkey until Thursday' },
         { id: 'e:board', n: 'Large cutting board with a juice groove' },
         { id: 'e:knives', n: 'Sharp carving knife and chef’s knife' },
         { id: 'e:platter', n: 'Serving platter' },
@@ -502,7 +502,7 @@
     },
     {
       name: 'Sides', items: [
-        { id: 'e:sheetpan2', n: 'Second rimmed sheet pan', note: 'Dries bread Monday, roasts the sprouts Thursday' },
+        { id: 'e:sheetpan2', n: 'Second rimmed sheet pan', note: 'Dries bread Tuesday, roasts the sprouts Thursday' },
         { id: 'e:9x13', n: '9 × 13 baking dish', note: 'For the stuffing' },
         { id: 'e:skillet', n: 'Large skillet', note: 'Mushrooms and stuffing aromatics' },
         { id: 'e:potpot', n: 'Large pot for the potatoes', note: 'The stockpot can do double duty if washed Wednesday' },
@@ -535,7 +535,7 @@
   /* ---------- reference ---------- */
 
   const tips = {
-    pickup: { q: 'Turkey pickup falls through Tuesday', a: 'A fresh turkey bought Wednesday still works. Spatchcock and dry-brine it that night, since even 1 day of brining makes a real difference. Make the stock that night too, and the gravy base Thursday morning. Avoid frozen birds this late.' },
+    pickup: { q: 'Turkey pickup falls through Monday', a: 'A fresh turkey bought Tuesday keeps the plan exactly as it is. Even Wednesday works: spatchcock and dry-brine it that night, since even 1 day of brining makes a real difference. Make the stock that night too, and the gravy base Thursday morning. Avoid frozen birds this late.' },
     browning: { q: 'Skin browning too fast', a: 'Lay a loose sheet of foil over the browned parts only.' },
     early: { q: 'Turkey done early', a: 'It holds 45–60 min loosely tented. Use the time for the sprouts.' },
     thin: { q: 'Gravy too thin', a: 'Simmer longer, or whisk in 1 tbsp cornstarch mixed with 2 tbsp cold water.' },
@@ -567,9 +567,9 @@
   ];
 
   const assumptions = [
-    { k: 'Turkey', v: 'A fresh 12–14 lb bird picked up Tuesday and dry-brined for 2 days. A frozen one won’t thaw in time, and a bigger bird won’t lie flat on a standard sheet pan.' },
+    { k: 'Turkey', v: 'A fresh 12–14 lb bird picked up Monday and dry-brined from Tuesday night. A frozen one won’t thaw in time, and a bigger bird won’t lie flat on a standard sheet pan.' },
     { k: 'Oven', v: 'Written for one oven. The turkey and stuffing bake together, then the sprouts roast while the turkey rests.' },
-    { k: 'Schedule', v: 'The big shop is Monday evening and the turkey comes home Tuesday. Tuesday and Wednesday cover the stock, both gravies and the cranberry sauce. To save fridge space, the potatoes, sprouts and stuffing are all made fresh on Thursday.' },
+    { k: 'Schedule', v: 'The big shop and the turkey pickup are Monday evening. Tuesday and Wednesday cover the stock, both gravies and the cranberry sauce. To save fridge space, the potatoes, sprouts and stuffing are all made fresh on Thursday.' },
   ];
 
   /** Notes that depend on the headcount. */

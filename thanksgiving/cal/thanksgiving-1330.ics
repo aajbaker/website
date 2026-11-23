@@ -10,8 +10,8 @@ DTSTAMP:20261122T000000Z
 DTSTART:20261122T100000
 DTEND:20261122T101500
 SUMMARY:🦃 Order the fresh turkey
-DESCRIPTION:12–14 lb\, for pickup Tuesday. Fresh birds sell out Thanksg
- iving week.\n\nhttps://www.aajbaker.com/thanksgiving/
+DESCRIPTION:12–14 lb\, for pickup Monday. Fresh birds sell out Thanksgi
+ ving week.\n\nhttps://www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -24,15 +24,14 @@ UID:tg26-mon@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261123T180000
 DTEND:20261123T200000
-SUMMARY:Thanksgiving prep: The big shop
-DESCRIPTION:One grocery run covers everything except the turkey\, and all
-  of it keeps until Thursday.\n\n• Do the full grocery shop\n• Cube a
- nd oven-dry the bread for stuffing\n\nhttps://www.aajbaker.com/thanksgiv
- ing/
+SUMMARY:Thanksgiving prep: Shop and pick up the turkey
+DESCRIPTION:One grocery run plus the turkey pickup. All of it keeps until
+  Thursday.\n\n• Do the full grocery shop\n• Pick up the turkey\n\nht
+ tps://www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Thanksgiving prep: The big shop
+DESCRIPTION:Thanksgiving prep: Shop and pick up the turkey
 TRIGGER:PT0S
 END:VALARM
 END:VEVENT
@@ -41,16 +40,17 @@ UID:tg26-tue@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261124T180000
 DTEND:20261124T210000
-SUMMARY:Thanksgiving prep: Turkey\, stock\, mushroom gravy
-DESCRIPTION:Spatchcock the turkey first so the backbone can go straight i
- nto the stockpot. The stock simmers 2–3 hours while you brine the bird
-  and make the mushroom gravy.\n\n• Pick up the turkey\n• Spatchcock 
- and dry-brine the turkey\n• Turkey stock\n• Mushroom gravy\n\nhttps:
- //www.aajbaker.com/thanksgiving/
+SUMMARY:Thanksgiving prep: Turkey\, stock\, bread
+DESCRIPTION:Get the bread drying on both sheet pans first. Then spatchcoc
+ k the turkey so the backbone can go straight into the stockpot. By the t
+ ime the bird is salted\, the bread is out and a pan is free for it. The 
+ stock simmers 2–3 hours.\n\n• Cube and oven-dry the bread for stuffi
+ ng\n• Spatchcock and dry-brine the turkey\n• Turkey stock\n\nhttps:/
+ /www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Thanksgiving prep: Turkey\, stock\, mushroom gravy
+DESCRIPTION:Thanksgiving prep: Turkey\, stock\, bread
 TRIGGER:PT0S
 END:VALARM
 END:VEVENT
@@ -59,15 +59,15 @@ UID:tg26-wed@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261125T180000
 DTEND:20261125T200000
-SUMMARY:Thanksgiving prep: Gravy base\, cranberry\, table
+SUMMARY:Thanksgiving prep: Both gravies\, cranberry\, table
 DESCRIPTION:Tonight sets up Thursday so it’s mostly oven time.\n\n• T
- urkey gravy base\n• Cranberry sauce\n• Make the herb butter\n• Was
- h the stockpot\n• Set the table\n• Chill the wine and drinks\n\nhttp
- s://www.aajbaker.com/thanksgiving/
+ urkey gravy base\n• Mushroom gravy\n• Cranberry sauce\n• Make the 
+ herb butter\n• Wash the stockpot\n• Set the table\n• Chill the win
+ e and drinks\n\nhttps://www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Thanksgiving prep: Gravy base\, cranberry\, table
+DESCRIPTION:Thanksgiving prep: Both gravies\, cranberry\, table
 TRIGGER:PT0S
 END:VALARM
 END:VEVENT
