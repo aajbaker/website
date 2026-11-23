@@ -1,5 +1,5 @@
 /* Offline support: network first (so updates show up), cache as fallback. */
-const CACHE = 'tg2026-v2';
+const CACHE = 'tg2026-v3';
 const SHELL = [
   '/thanksgiving/', '/thanksgiving/style.css', '/thanksgiving/data.js', '/thanksgiving/app.js',
   '/thanksgiving/manifest.json', '/thanksgiving/icon.svg', '/thanksgiving/icon-180.png',

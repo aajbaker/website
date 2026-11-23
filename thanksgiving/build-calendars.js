@@ -60,12 +60,12 @@ function build(dinner) {
 
   const sun = TG.days.find(d => d.id === 'sun');
   lines.push(...event('tg26-sun-order', sun.date, 10 * 60, 15, '🦃 Order the fresh turkey',
-    '12–14 lb, for pickup Monday evening. Fresh birds sell out Thanksgiving week.'));
+    '12–14 lb, for pickup Tuesday. Fresh birds sell out Thanksgiving week.'));
 
   for (const id of ['mon', 'tue', 'wed']) {
     const d = TG.days.find(x => x.id === id);
     const desc = d.blurb + '\n\n' + d.tasks.map(t => '• ' + t.title).join('\n');
-    lines.push(...event('tg26-' + id, d.date, 18 * 60, 120, 'Thanksgiving prep: ' + d.sub, desc));
+    lines.push(...event('tg26-' + id, d.date, 18 * 60, id === 'tue' ? 180 : 120, 'Thanksgiving prep: ' + d.sub, desc));
   }
 
   TG.groupRows(offset).forEach((g, i) => {

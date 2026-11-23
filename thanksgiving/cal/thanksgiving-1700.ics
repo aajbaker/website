@@ -10,8 +10,8 @@ DTSTAMP:20261122T000000Z
 DTSTART:20261122T100000
 DTEND:20261122T101500
 SUMMARY:🦃 Order the fresh turkey
-DESCRIPTION:12–14 lb\, for pickup Monday evening. Fresh birds sell out 
- Thanksgiving week.\n\nhttps://www.aajbaker.com/thanksgiving/
+DESCRIPTION:12–14 lb\, for pickup Tuesday. Fresh birds sell out Thanksg
+ iving week.\n\nhttps://www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -24,16 +24,15 @@ UID:tg26-mon@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261123T180000
 DTEND:20261123T200000
-SUMMARY:Thanksgiving prep: Shop\, spatchcock\, brine
-DESCRIPTION:Shop\, then get the turkey brining. Starting the brine this e
- arly gives the best seasoning and the crispiest skin.\n\n• Do the full
-  grocery shop\n• Pick up the turkey\n• Spatchcock and dry-brine the 
- turkey\n• Cube the bread for stuffing\n\nhttps://www.aajbaker.com/than
- ksgiving/
+SUMMARY:Thanksgiving prep: The big shop
+DESCRIPTION:One grocery run covers everything except the turkey\, and all
+  of it keeps until Thursday.\n\n• Do the full grocery shop\n• Cube a
+ nd oven-dry the bread for stuffing\n\nhttps://www.aajbaker.com/thanksgiv
+ ing/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Thanksgiving prep: Shop\, spatchcock\, brine
+DESCRIPTION:Thanksgiving prep: The big shop
 TRIGGER:PT0S
 END:VALARM
 END:VEVENT
@@ -41,15 +40,17 @@ BEGIN:VEVENT
 UID:tg26-tue@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261124T180000
-DTEND:20261124T200000
-SUMMARY:Thanksgiving prep: Stock\, cranberry\, mushroom gravy
-DESCRIPTION:Start the turkey stock first. It simmers for 2–3 hours whil
- e you make the other two.\n\n• Turkey stock\n• Cranberry sauce\n• 
- Mushroom gravy\n\nhttps://www.aajbaker.com/thanksgiving/
+DTEND:20261124T210000
+SUMMARY:Thanksgiving prep: Turkey\, stock\, mushroom gravy
+DESCRIPTION:Spatchcock the turkey first so the backbone can go straight i
+ nto the stockpot. The stock simmers 2–3 hours while you brine the bird
+  and make the mushroom gravy.\n\n• Pick up the turkey\n• Spatchcock 
+ and dry-brine the turkey\n• Turkey stock\n• Mushroom gravy\n\nhttps:
+ //www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Thanksgiving prep: Stock\, cranberry\, mushroom gravy
+DESCRIPTION:Thanksgiving prep: Turkey\, stock\, mushroom gravy
 TRIGGER:PT0S
 END:VALARM
 END:VEVENT
@@ -58,16 +59,15 @@ UID:tg26-wed@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261125T180000
 DTEND:20261125T200000
-SUMMARY:Thanksgiving prep: Gravy\, stuffing\, sides prep
+SUMMARY:Thanksgiving prep: Gravy base\, cranberry\, table
 DESCRIPTION:Tonight sets up Thursday so it’s mostly oven time.\n\n• T
- urkey gravy base\n• Assemble the stuffing\n• Trim the sprouts\n• P
- eel the potatoes\n• Make the herb butter\n• Wash the stockpot\n• S
- et the table\n• Chill the wine and drinks\n\nhttps://www.aajbaker.com/
- thanksgiving/
+ urkey gravy base\n• Cranberry sauce\n• Make the herb butter\n• Was
+ h the stockpot\n• Set the table\n• Chill the wine and drinks\n\nhttp
+ s://www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Thanksgiving prep: Gravy\, stuffing\, sides prep
+DESCRIPTION:Thanksgiving prep: Gravy base\, cranberry\, table
 TRIGGER:PT0S
 END:VALARM
 END:VEVENT
@@ -76,14 +76,16 @@ UID:tg26-thu-0@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261126T133000
 DTEND:20261126T134000
-SUMMARY:Turkey out of fridge + Stuffing out of fridge
-DESCRIPTION:• Take the turkey out of the fridge so it loses its chill.\
- n• Take the stuffing out of the fridge too.\n\nhttps://www.aajbaker.co
- m/thanksgiving/
+SUMMARY:Turkey out of fridge + Sauté stuffing vegetables
+DESCRIPTION:• Take the turkey and the herb butter out of the fridge\, s
+ o the bird loses its chill and the butter softens.\n• Melt 1 stick but
+ ter in the large skillet. Cook 2 onions and 4 celery stalks\, diced\, un
+ til soft\, about 10 min. Add 3 cloves minced garlic for the last minute\
+ , then take it off the heat.\n\nhttps://www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Turkey out of fridge + Stuffing out of fridge
+DESCRIPTION:Turkey out of fridge + Sauté stuffing vegetables
 TRIGGER:PT0S
 END:VALARM
 END:VEVENT
@@ -92,15 +94,17 @@ UID:tg26-thu-1@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261126T140000
 DTEND:20261126T141000
-SUMMARY:Preheat oven to 450°F + Veg in the sheet pan
+SUMMARY:Preheat oven to 450°F + Veg in the sheet pan + Trim sprouts
 DESCRIPTION:• Preheat the oven to 450°F with racks in the lower-middle
   and bottom positions.\n• Scatter 1 chopped onion\, 2 carrots and 2 ce
- lery stalks in the sheet pan under the rack.\n\nhttps://www.aajbaker.com
- /thanksgiving/
+ lery stalks in the sheet pan under the rack\, and pour in 1 cup water so
+  the drippings don’t scorch.\n• Trim and halve 2 lb Brussels sprouts
+  while you’re chopping. They can sit on the counter until they go in t
+ he oven.\n\nhttps://www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Preheat oven to 450°F + Veg in the sheet pan
+DESCRIPTION:Preheat oven to 450°F + Veg in the sheet pan + Trim sprouts
 TRIGGER:PT0S
 END:VALARM
 END:VEVENT
@@ -138,13 +142,65 @@ END:VEVENT
 BEGIN:VEVENT
 UID:tg26-thu-4@aajbaker.com
 DTSTAMP:20261122T000000Z
+DTSTART:20261126T145000
+DTEND:20261126T150000
+SUMMARY:Assemble stuffing
+DESCRIPTION:• Butter the 9 × 13 dish. In a big bowl\, toss the bread c
+ ubes with the sautéed vegetables\, 2 tbsp chopped sage\, 1 tbsp thyme\,
+  ¼ cup parsley\, about 1 tsp kosher salt and pepper. Taste for salt now
+ \, before the eggs go in. Add 2 eggs\, beaten\, and 2–3 cups vegetable
+  stock\, tossing until moist but not soggy. Pack it into the dish and co
+ ver with foil.\n\nhttps://www.aajbaker.com/thanksgiving/
+URL:https://www.aajbaker.com/thanksgiving/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Assemble stuffing
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tg26-thu-5@aajbaker.com
+DTSTAMP:20261122T000000Z
+DTSTART:20261126T150000
+DTEND:20261126T151000
+SUMMARY:Peel potatoes
+DESCRIPTION:• Peel the potatoes and cut them into 2-inch chunks. Drop t
+ hem into the potato pot as you go and cover them with cold water.\n\nhtt
+ ps://www.aajbaker.com/thanksgiving/
+URL:https://www.aajbaker.com/thanksgiving/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Peel potatoes
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tg26-thu-6@aajbaker.com
+DTSTAMP:20261122T000000Z
+DTSTART:20261126T152500
+DTEND:20261126T153500
+SUMMARY:Rotate the turkey
+DESCRIPTION:• Turn the pan front to back so the turkey browns evenly. I
+ f the pan looks dry\, add another ½ cup water.\n\nhttps://www.aajbaker.
+ com/thanksgiving/
+URL:https://www.aajbaker.com/thanksgiving/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rotate the turkey
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tg26-thu-7@aajbaker.com
+DTSTAMP:20261122T000000Z
 DTSTART:20261126T153000
 DTEND:20261126T154000
 SUMMARY:Stuffing in + Rewarm turkey gravy + Rewarm mushroom gravy
 DESCRIPTION:• Stuffing in on the bottom rack\, covered with foil.\n• 
- Rewarm the turkey gravy on low in its own saucepan.\n• Rewarm the mush
- room gravy on low in its own saucepan.\n\nhttps://www.aajbaker.com/thank
- sgiving/
+ Rewarm the turkey gravy on low in its own saucepan. It will have set lik
+ e jelly\, so whisk as it melts. Stir now and then\, and add a splash of 
+ the saved stock if it gets too thick.\n• Rewarm the mushroom gravy on 
+ low in its own saucepan.\n\nhttps://www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -153,15 +209,15 @@ TRIGGER:PT0S
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:tg26-thu-5@aajbaker.com
+UID:tg26-thu-8@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261126T154500
 DTEND:20261126T155500
 SUMMARY:Start checking turkey temp + Potatoes on
 DESCRIPTION:• Start checking the turkey temperature: breast 150°F\, th
- ighs 165°F or higher.\n• Put the potatoes in a pot of cold salted wat
- er and bring to a boil\, then simmer about 20 min until tender.\n\nhttps
- ://www.aajbaker.com/thanksgiving/
+ ighs 165°F or higher.\n• Salt the potato water and bring it to a boil
+ \, then simmer about 20 min until tender.\n\nhttps://www.aajbaker.com/th
+ anksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -170,7 +226,7 @@ TRIGGER:PT0S
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:tg26-thu-6@aajbaker.com
+UID:tg26-thu-9@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261126T160000
 DTEND:20261126T161000
@@ -185,33 +241,34 @@ TRIGGER:PT0S
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:tg26-thu-7@aajbaker.com
+UID:tg26-thu-10@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261126T160500
 DTEND:20261126T161500
-SUMMARY:🦃 Turkey out to rest + Stuffing out + Sprouts in
+SUMMARY:🦃 Turkey out to rest
 DESCRIPTION:• Turkey out when the breast reads 150°F and the thighs re
- ad 165°F or higher. Rest it uncovered for 25–30 min.\n• Take the st
- uffing out too (165°F in the center) and cover it to keep warm.\n• Sp
- routs in: toss with olive oil\, salt and pepper on a sheet pan. Roast 20
- –25 min\, shaking once.\n\nhttps://www.aajbaker.com/thanksgiving/
+ ad 165°F or higher. Move it to a cutting board and rest it uncovered fo
+ r 25–30 min.\n\nhttps://www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🦃 Turkey out to rest + Stuffing out + Sprouts in
+DESCRIPTION:🦃 Turkey out to rest
 TRIGGER:PT0S
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:tg26-thu-8@aajbaker.com
+UID:tg26-thu-11@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261126T161000
 DTEND:20261126T162000
 SUMMARY:Drippings into turkey gravy + Check mushroom gravy
-DESCRIPTION:• Strain the pan drippings\, skim off the fat\, and taste t
- hem (dry-brine drippings are salty). Whisk them into the turkey gravy on
- ly. Simmer and season.\n• Thin the mushroom gravy with a splash of veg
- etable stock if needed.\n\nhttps://www.aajbaker.com/thanksgiving/
+DESCRIPTION:• Pour everything in the turkey pan through a strainer into
+  a bowl. Press hard on the vegetables to squeeze out their juices\, then
+  throw them away. Skim off the fat and taste the juices\, since dry-brin
+ e drippings are salty. Whisk them into the turkey gravy only\, simmer\, 
+ and season with pepper\, plus salt only if it needs it.\n• Thin the mu
+ shroom gravy with a splash of vegetable stock if needed.\n\nhttps://www.
+ aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -220,7 +277,26 @@ TRIGGER:PT0S
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:tg26-thu-9@aajbaker.com
+UID:tg26-thu-12@aajbaker.com
+DTSTAMP:20261122T000000Z
+DTSTART:20261126T161500
+DTEND:20261126T162500
+SUMMARY:Stuffing out + Sprouts in
+DESCRIPTION:• Take the stuffing out (165°F in the center) and tent it 
+ loosely with foil to keep warm.\n• Toss the sprouts with about 3 tbsp 
+ olive oil\, 1 tsp kosher salt and pepper. Spread them on the second shee
+ t pan (not the turkey’s) cut side down in one layer. Roast without sti
+ rring until the cut sides are deep brown\, about 20 min.\n\nhttps://www.
+ aajbaker.com/thanksgiving/
+URL:https://www.aajbaker.com/thanksgiving/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Stuffing out + Sprouts in
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tg26-thu-13@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261126T162000
 DTEND:20261126T163000
@@ -236,13 +312,16 @@ TRIGGER:PT0S
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:tg26-thu-10@aajbaker.com
+UID:tg26-thu-14@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261126T163000
 DTEND:20261126T164000
 SUMMARY:Carve the turkey + Cranberry sauce out
-DESCRIPTION:• Carve the turkey.\n• Take the cranberry sauce out of th
- e fridge.\n\nhttps://www.aajbaker.com/thanksgiving/
+DESCRIPTION:• Carve the turkey. Cut off each leg at the joint and split
+  it into drumstick and thigh. Slice each breast off whole along the brea
+ stbone\, then cut it across the grain into ½-inch slices. Take off the 
+ wings and arrange everything on a warm platter.\n• Take the cranberry 
+ sauce out of the fridge.\n\nhttps://www.aajbaker.com/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -251,14 +330,15 @@ TRIGGER:PT0S
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:tg26-thu-11@aajbaker.com
+UID:tg26-thu-15@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261126T164500
 DTEND:20261126T165500
 SUMMARY:Finish sprouts + Fill serving dishes
-DESCRIPTION:• Finish the sprouts with balsamic or lemon.\n• Fill the 
- serving dishes\, giving each gravy its own ladle and label.\n\nhttps://w
- ww.aajbaker.com/thanksgiving/
+DESCRIPTION:• Toss the sprouts with 1–2 tbsp balsamic or maple syrup\
+ , or the juice of ½ lemon. Taste for salt.\n• Fill the serving dishes
+ \, giving each gravy its own ladle and label.\n\nhttps://www.aajbaker.co
+ m/thanksgiving/
 URL:https://www.aajbaker.com/thanksgiving/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -267,7 +347,7 @@ TRIGGER:PT0S
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:tg26-thu-12@aajbaker.com
+UID:tg26-thu-16@aajbaker.com
 DTSTAMP:20261122T000000Z
 DTSTART:20261126T170000
 DTEND:20261126T171000
